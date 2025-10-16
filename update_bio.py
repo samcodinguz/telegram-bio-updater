@@ -12,8 +12,13 @@ phone = "998904781877"
 client = TelegramClient("bio_session", api_id, api_hash)
 
 # Progress bar belgilarini tayyorlaymiz
-progress_states = ["[■□□□□]%", "[■■□□□]%", "[■■■□□]%", "[■■■■□]%", "[■■■■■]%"]
-progress_bio = ["🚀 {t} — Push & Commit", "🌐 {t} | Deploying...", "🌌 {t} | Debugging under stars", "⚡ {t} — Algorithm mode", "🎯 {t} | Goals: 100% code"] 
+progress_states = [
+    "⏳ Сейчас: {t} по Самарканду | Живу в коде и кофе... ⚡", 
+    "⏰ {t} — если я не отвечаю, значит сплю или ем 🍜",
+    "⌛ Время сейчас: {t} | Пишу код, слушаю дождь ☔️",
+    "⏰ {t} — В мире кода и багов 🐞",
+    "⏳ Сейчас: {t} | Продуктивность: загружается... 🚀🚀🚀"
+]
 
 async def update_bio_forever():
     async with client:
@@ -21,12 +26,11 @@ async def update_bio_forever():
         while True:
             tz_offset = timedelta(hours=5)
             now = datetime.utcnow() + tz_offset
-            time_str = now.strftime("%H:%M:%S")
+            time_str = now.strftime("%H:%M")
             
             # Progress bar har soniyada o'zgaradi
             progress = progress_states[counter % len(progress_states)]
-            bio_template = progress_bio[counter % len(progress_bio)]
-            text = f"{bio_template.format(t=time_str)} {progress}"
+            text = f"{progress.format(t=time_str)}"
             
             await client(UpdateProfileRequest(about=text))
             print(f"Bio updated: {text}")
