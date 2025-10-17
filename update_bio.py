@@ -36,7 +36,7 @@ async def update_bio_forever():
             print(f"Bio updated: {text}")
             
             counter += 1
-            await asyncio.sleep(60)  # har 10 soniyada yangilansin
+            await asyncio.sleep(60)  # har 60 soniyada yangilansin
 
 if __name__ == "__main__":
     asyncio.run(update_bio_forever())
