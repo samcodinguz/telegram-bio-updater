@@ -31,10 +31,9 @@ async def update_bio_forever():
             text = f"{progress.format(t=time_str)}"
             
             await client(UpdateProfileRequest(about=text))
-            print(f"Bio updated: {text}")
             
             counter += 1
-            await asyncio.sleep(20)  # har 20 soniyada yangilansin
+            await asyncio.sleep(60)  # har 20 soniyada yangilansin
 
 if __name__ == "__main__":
     asyncio.run(update_bio_forever())
